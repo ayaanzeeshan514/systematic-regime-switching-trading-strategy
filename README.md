@@ -61,7 +61,7 @@ The strategy uses a Hidden Markov Model to identify three market regimes based o
 - **Sideways markets:** Mixed signals with no clear trend → Strategy holds half positions
 - **Bull markets:** Positive returns with momentum → Strategy follows strength
 
-The HMM trains on 150 days of data using 4 features: mean returns, volatility, volatility-of-volatility, and win rate.
+The HMM trains on 504 days of data using 4 features: mean returns, volatility, volatility-of-volatility, and win rate.
 
 ### Trading Logic
 
@@ -124,9 +124,7 @@ Alpha of 18.35% means the strategy generates that much excess return beyond what
 
 Walk-forward testing means I train the model on past data, predict forward, then roll the window forward and repeat. This avoids lookahead bias - the model never sees future data during training. I used this because backtests without it are basically useless, they overfit to the full dataset and look great but fail in real trading.
 
-**Training Window:** 150 days
-
-I originally used 504 days (2 years) but found that shorter windows adapt faster to regime changes. Markets change quickly, and 2-year-old data becomes stale. 150 days (about 6 months) captures the current regime without dragging in outdated patterns. Tested both and 150 days performed significantly better.
+**Training Window:** 504 days
 
 **Prediction Window:** 63 days
 
@@ -156,15 +154,9 @@ These costs are realistic for a $100k-$1M portfolio trading liquid stocks like A
 - Sharpe dropped to 1.16 and 2008 loss increased from -3% to -9%
 - Learned: Volatility spikes in both directions (crashes AND rallies). Returns are a better regime indicator because they directly measure what you care about - making or losing money.
 
-**Test 3: Adaptive Training Window (504 → 150 days)**
-- Reduced training window from 2 years to 6 months, thinking recent data matters more than old data
-- Sharpe jumped from 1.28 to 1.49, and crisis performance improved dramatically
-- Learned: Markets evolve fast. Training on 2-year-old patterns just makes the model fight the last war. Shorter windows stay relevant.
-
 ### Key Insights
 
 - Simple models often beat complex ones - 4 features was the sweet spot, more caused overfitting
-- Recency matters more than sample size for regime detection - 150 days worked better than 504 days
 - Vol-of-vol is crucial for crisis detection, as it spikes when regimes are changing, giving early warning
 - Mean reversion in bear markets works because of V-shaped recoveries, not because bears always bounce
 - Transaction costs add up fast, needed to include realistic slippage to avoid fooling myself
