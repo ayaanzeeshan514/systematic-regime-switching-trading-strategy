@@ -24,6 +24,12 @@ I noticed that US equities markets could often be classified into clear "regimes
 - Outperformed buy-and-hold by 6.64% annually with 44% lower drawdowns
 - Achieved 1.49 Sharpe ratio
 - Total transaction costs: 56 basis points over 21 years
+  
+## Performance & Regime Detection Charts
+
+<img width="977" height="528" alt="image" src="https://github.com/user-attachments/assets/7163d928-f719-46de-b344-4abd824dd222" />
+
+<img width="981" height="297" alt="image" src="https://github.com/user-attachments/assets/e73a8b7c-33a2-4fe9-b907-4728c091f95e" />
 
 ---
 
@@ -106,6 +112,9 @@ Similar story - volatility exploded in March 2020, the 150-day training window a
 | R² | **0.29** |
 
 Alpha of 18.35% means the strategy generates that much excess return beyond what you'd expect from market risk alone. Beta of 0.46 shows the strategy has less than half the systematic risk of the S&P 500, so you're getting better returns with lower market exposure. The R² of 29% means most of the returns come from the strategy's logic, not just riding the market up and down.
+
+**CAPM Chart**
+<img width="989" height="590" alt="image" src="https://github.com/user-attachments/assets/6a6e6beb-8eda-4769-87ce-6b8d61ae8054" />
 
 ---
 
